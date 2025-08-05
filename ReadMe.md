@@ -12,3 +12,10 @@ A simple command-line calculator written in TypeScript.
 
 ```bash
 npm run dev
+
+## 🔍 Code Quality
+- **ESLint** for code linting
+- **Prettier** for consistent formatting
+- **Husky** pre-commit hooks
+- **GitHub Actions** for CI linting & formatting
+```

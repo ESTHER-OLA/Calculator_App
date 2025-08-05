@@ -1,4 +1,4 @@
-import readline from "readline";
+import readline from 'readline';
 
 // =================== TYPES ===================
 
@@ -14,7 +14,7 @@ enum OperationChoice {
   SUBTRACT,
   MULTIPLY,
   DIVIDE,
-  EXIT
+  EXIT,
 }
 
 // =================== MATH FUNCTIONS ===================
@@ -33,7 +33,7 @@ function multiply(a: number, b: number): number {
 
 function divide(a: number, b: number): number {
   if (b === 0) {
-    throw new Error("Division by zero is not allowed.");
+    throw new Error('Division by zero is not allowed.');
   }
   return a / b;
 }
@@ -42,11 +42,11 @@ function divide(a: number, b: number): number {
 
 const rl: readline.Interface = readline.createInterface({
   input: process.stdin,
-  output: process.stdout
+  output: process.stdout,
 });
 
 function displayWelcomeMessage(): void {
-  console.log("Welcome to TypeScript Calculator!");
+  console.log('Welcome to TypeScript Calculator!');
 }
 
 function showOperations(): void {
@@ -64,7 +64,7 @@ Choose an operation:
 
 function promptForOperation(): Promise<string> {
   return new Promise((resolve) => {
-    rl.question("Enter your choice: ", resolve);
+    rl.question('Enter your choice: ', resolve);
   });
 }
 
@@ -87,10 +87,6 @@ function validateNumber(input: string): number | null {
   return isNaN(num) ? null : num;
 }
 
-function isValidNumber(value: string): boolean {
-  return !isNaN(Number(value));
-}
-
 function handleInvalidInput(input: string): void {
   console.log(`Invalid input "${input}". Please enter a valid number.`);
 }
@@ -102,7 +98,7 @@ function handleCalculationError(error: Error): void {
 }
 
 function exitGracefully(): void {
-  console.log("Exiting... Goodbye!");
+  console.log('Exiting... Goodbye!');
   rl.close();
   process.exit(0);
 }
@@ -111,7 +107,7 @@ function exitGracefully(): void {
 
 async function mainMenuLoop(): Promise<void> {
   displayWelcomeMessage();
-  let history: CalculationHistory[] = [];
+  const history: CalculationHistory[] = [];
 
   while (true) {
     showOperations();
@@ -119,7 +115,7 @@ async function mainMenuLoop(): Promise<void> {
     const choice: number = parseInt(choiceInput);
 
     if (isNaN(choice) || choice < 1 || choice > 5) {
-      console.log("Invalid choice. Please select a number between 1 and 5.");
+      console.log('Invalid choice. Please select a number between 1 and 5.');
       continue;
     }
 
@@ -127,8 +123,8 @@ async function mainMenuLoop(): Promise<void> {
       exitGracefully();
     }
 
-    const operand1 = await getNumberInput("Enter first number: ");
-    const operand2 = await getNumberInput("Enter second number: ");
+    const operand1 = await getNumberInput('Enter first number: ');
+    const operand2 = await getNumberInput('Enter second number: ');
     let result: number;
 
     try {
@@ -146,7 +142,7 @@ async function mainMenuLoop(): Promise<void> {
           result = divide(operand1, operand2);
           break;
         default:
-          throw new Error("Unknown operation");
+          throw new Error('Unknown operation');
       }
 
       console.log(`Result: ${result}`);
@@ -154,7 +150,7 @@ async function mainMenuLoop(): Promise<void> {
         operation: OperationChoice[choice],
         operand1,
         operand2,
-        result
+        result,
       });
     } catch (error: unknown) {
       handleCalculationError(error as Error);
