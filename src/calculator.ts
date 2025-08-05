@@ -88,7 +88,7 @@ function validateNumber(input: string): number | null {
 }
 
 function handleInvalidInput(input: string): void {
-  console.log(`Invalid input "${input}". Please enter a valid number.`);
+  console.log(`Invalid input "${input}". Please enter a valid number input.`);
 }
 
 // =================== ERROR HANDLING ===================
